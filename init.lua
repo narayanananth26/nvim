@@ -15,3 +15,28 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank { higroup = 'IncSearch', timeout = 150 }
   end,
 })
+
+-- cursor colors based on mode
+vim.opt.guicursor = {
+  "n:block-CursorNormal",
+  "v:block-CursorVisual",
+  "i-ci:block-CursorInsert-blinkon1",
+  "r-cr:hor20-CursorReplace",
+  "o:hor50-CursorOperator",
+}
+
+local function set_cursor_colors()
+  vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#000000", bg = "#FF8A95" })
+  vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#000000", bg = "#82c785" })
+  vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#000000", bg = "#76a8f9" })
+end
+
+set_cursor_colors()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = set_cursor_colors,
+})
+
+-- show commands in statusline
+vim.opt.showcmd = true
+vim.opt.showcmdloc = "statusline"
