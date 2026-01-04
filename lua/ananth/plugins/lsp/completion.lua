@@ -1,15 +1,16 @@
+
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    lazy = false,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      { "antosha417/nvim-lsp-file-operations", config = true },
-      { "folke/lazydev.nvim", opts = {} },
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
     },
     config = function()
       local cmp = require("cmp")
-      local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
       cmp.setup({
         sources = {
@@ -17,12 +18,31 @@ return {
         },
       })
 
-      local capabilities = cmp_nvim_lsp.default_capabilities()
+      -- `/` search completion
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
 
-      vim.lsp.config("*", {
-        capabilities = capabilities,
+      -- `:` command completion
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources(
+          {
+            { name = "path" },
+          },
+          {
+            {
+              name = "cmdline",
+              option = {
+                ignore_cmds = { "Man", "!" },
+              },
+            },
+          }
+        ),
       })
     end,
   },
 }
-
