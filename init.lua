@@ -1,3 +1,4 @@
+vim.o.termguicolors = true
 require("ananth")
 
 vim.o.number = true
