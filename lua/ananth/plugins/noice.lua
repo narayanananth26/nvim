@@ -3,7 +3,25 @@ return {
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
-			-- add any options here
+			lsp = {
+				hover = {
+					enabled = true,
+					opts = {
+						border = {
+							style = "rounded", -- choose "single", "rounded", "double", etc
+							padding = { 0, 1 }, -- optional padding inside the border
+						},
+					},
+				},
+				signature = {
+					enabled = true,
+					opts = {
+						border = {
+							style = "rounded",
+						},
+					},
+				},
+			},
 		},
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
