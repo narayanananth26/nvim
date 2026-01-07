@@ -2,8 +2,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- write and quit
-vim.keymap.set("n", "<leader>w", ":write<CR>")
-vim.keymap.set("n", "<leader>q", ":quit<CR>")
+vim.keymap.set("n", "<leader>w", function()
+  vim.cmd("write")
+  vim.lsp.buf.format()
+end, { desc = "Write and format" })
+		 vim.keymap.set("n", "<leader>q", ":quit<CR>")
 
 -- :Ex
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
