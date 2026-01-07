@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set("n", "<leader>q", ":quit<CR>")
 
 -- :Ex
-vim.keymap.set("n", "<leader>b", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
 
 -- :Lazy
 vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Open Lazy.nvim" })
@@ -23,9 +23,3 @@ vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
 
--- open oil in parent dir
-vim.keymap.set("n", "<leader>ex", function()
-	require("oil").open(vim.fn.expand("%:p:h"))
-end, {
-	silent = true,
-})
