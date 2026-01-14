@@ -28,3 +28,6 @@ vim.keymap.set("n", "<leader>P", '"+P')
 
 -- neo-tree toggle
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { silent = true })
+
+-- clear search highlight
+vim.keymap.set("n", "<Esc><Esc>", "<cmd>nohlsearch<CR>", { silent = true })
