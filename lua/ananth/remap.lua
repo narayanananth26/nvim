@@ -44,4 +44,5 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- git keymaps
-vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Git Status" })
+vim.keymap.set("n", "<leader>gs", "<cmd>0G<CR>", { desc = "Git Status" })
+vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })
