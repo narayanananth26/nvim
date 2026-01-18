@@ -7,6 +7,11 @@ vim.keymap.set("n", "<leader>w", function()
 	vim.lsp.buf.format()
 end, { desc = "Write and format" })
 vim.keymap.set("n", "<leader>q", ":quit<CR>")
+vim.keymap.set("n", "<leader>z", function()
+	vim.lsp.buf.format()
+	vim.cmd("write")
+	vim.cmd("quit")
+end, { desc = "Format, write, and quit" })
 
 -- :Ex
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
@@ -38,8 +43,5 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
--- Next buffer 
-vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { silent = true })
-
--- Previous buffer 
-vim.keymap.set("n", "<C-S-Tab>", ":bprevious<CR>", { silent = true })
+-- git keymaps
+vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Git Status" })

@@ -1,4 +1,5 @@
 vim.o.termguicolors = true
+
 require("ananth")
 
 vim.o.number = true
@@ -7,12 +8,12 @@ vim.o.tabstop = 4
 vim.o.swapfile = false
 
 -- yank highlight
-vim.api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd("textyankpost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "Hightlight selection on yank",
+	desc = "hightlight selection on yank",
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+		vim.highlight.on_yank({ higroup = "incsearch", timeout = 150 })
 	end,
 })
 
@@ -26,9 +27,11 @@ vim.opt.guicursor = {
 }
 
 local function set_cursor_colors()
-	vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#000000", bg = "#FF8A95" })
-	vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#000000", bg = "#82c785" })
-	vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#000000", bg = "#76a8f9" })
+	local fg = "#1F2933"
+
+	vim.api.nvim_set_hl(0, "CursorNormal", { fg = fg, bg = "#FF8A95" })
+	vim.api.nvim_set_hl(0, "CursorInsert", { fg = fg, bg = "#82C785" })
+	vim.api.nvim_set_hl(0, "CursorVisual", { fg = fg, bg = "#76A8F9" })
 end
 
 set_cursor_colors()
@@ -40,3 +43,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 -- show commands in statusline
 vim.opt.showcmd = true
 vim.opt.showcmdloc = "statusline"
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true

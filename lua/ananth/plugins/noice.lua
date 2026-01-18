@@ -1,35 +1,32 @@
 return {
 	{
 		"folke/noice.nvim",
-		event = "VeryLazy",
+		event = "verylazy",
 		opts = {
 			lsp = {
 				hover = {
 					enabled = true,
 					opts = {
-						border = {
-							style = "rounded", -- choose "single", "rounded", "double", etc
-							padding = { 0, 1 }, -- optional padding inside the border
-						},
+						border = { style = "rounded", padding = { 0, 1 } },
 					},
 				},
 				signature = {
 					enabled = true,
 					opts = {
-						border = {
-							style = "rounded",
-						},
+						border = { style = "rounded" },
 					},
+				},
+			},
+			routes = {
+				{
+					filter = { event = "msg_show", find = "G" },
+					opts = { skip = true },
 				},
 			},
 		},
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			-- "rcarriga/nvim-notify",
+			"muniftanjim/nui.nvim",
+			-- "rcarriga/nvim-notify", -- optional
 		},
 	},
 }

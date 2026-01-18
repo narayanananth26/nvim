@@ -16,9 +16,9 @@ return {
       highlight EndOfBuffer guibg=NONE ctermbg=NONE
     ]])
 
-		vim.api.nvim_set_hl(0, "IncSearch", {
-			bg = "#FF8A95",
-			fg = "#1A1A1A",
-		})
+		-- Search highlights (contrasting but harmonious)
+		vim.api.nvim_set_hl(0, "IncSearch", { fg = "#1F2933", bg = "#FF5C6A" }) -- darker pink
+		vim.api.nvim_set_hl(0, "Search", { fg = "#1F2933", bg = "#4BB86B" }) -- darker green
+		vim.api.nvim_set_hl(0, "CurSearch", { fg = "#1F2933", bg = "#4F7DEB" }) -- darker blue
 	end,
 }
