@@ -14,7 +14,7 @@ return {
 			cmp.setup({
 				preselect = cmp.PreselectMode.Item,
 				completion = {
-					completeopt = "menu,menuone",
+					completeopt = "menu,menuone,noinsert",
 				},
 				mapping = {
 					["<Tab>"] = cmp.mapping(function(fallback)
@@ -31,10 +31,16 @@ return {
 							fallback()
 						end
 					end),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping.confirm({ 
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true 
+					}),
 				},
 				sources = {
 					{ name = "nvim_lsp" },
+				},
+				experimental = {
+					ghost_text = true, -- Shows preview of completion
 				},
 			})
 

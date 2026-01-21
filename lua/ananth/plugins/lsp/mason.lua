@@ -5,7 +5,7 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"clangd",
-				"ts_ls",
+				-- "ts_ls", -- Using typescript-tools.nvim instead for better TypeScript support
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -18,6 +18,62 @@ return {
 				"eslint",
 			},
 		},
+		config = function(_, opts)
+			local mason_lspconfig = require("mason-lspconfig")
+			local lspconfig = require("lspconfig")
+			local cmp_nvim_lsp = require("cmp_nvim_lsp")
+			
+			-- Enhanced capabilities for auto-completion and auto-import
+			local capabilities = cmp_nvim_lsp.default_capabilities()
+			
+			mason_lspconfig.setup(opts)
+			
+			-- Setup handlers for automatic server configuration
+			mason_lspconfig.setup_handlers({
+				-- Default handler for all servers
+				function(server_name)
+					lspconfig[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
+				
+				-- Lua LSP with Neovim-specific settings
+				["lua_ls"] = function()
+					lspconfig.lua_ls.setup({
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								diagnostics = {
+									globals = { "vim" },
+								},
+								workspace = {
+									library = {
+										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+										[vim.fn.stdpath("config") .. "/lua"] = true,
+									},
+								},
+							},
+						},
+					})
+				end,
+				
+				-- Python LSP with auto-import support
+				["pyright"] = function()
+					lspconfig.pyright.setup({
+						capabilities = capabilities,
+						settings = {
+							python = {
+								analysis = {
+									autoSearchPaths = true,
+									useLibraryCodeForTypes = true,
+									diagnosticMode = "workspace",
+								},
+							},
+						},
+					})
+				end,
+			})
+		end,
 		dependencies = {
 			{
 				"mason-org/mason.nvim",
