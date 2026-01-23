@@ -16,6 +16,19 @@ return {
 				completion = {
 					completeopt = "menu,menuone,noinsert",
 				},
+				window = {
+					completion = {
+						border = "rounded",
+						winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+						scrollbar = true,
+					},
+					documentation = {
+						border = "rounded",
+						winhighlight = "Normal:Pmenu,FloatBorder:Pmenu",
+						max_height = 15,
+						max_width = 60,
+					},
+				},
 				mapping = {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then

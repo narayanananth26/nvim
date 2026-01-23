@@ -34,8 +34,8 @@ vim.keymap.set("n", "<leader>P", '"+P')
 -- neo-tree toggle
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { silent = true })
 
--- clear search highlight
-vim.keymap.set("n", "<Esc><Esc>", "<cmd>nohlsearch<CR>", { silent = true })
+-- clear search highlight (using <leader><CR> instead of <Esc><Esc> to avoid ESC delay)
+vim.keymap.set("n", "<leader><CR>", "<cmd>nohlsearch<CR>", { silent = true, desc = "Clear search highlight" })
 
 -- move between windows
 vim.keymap.set("n", "<C-h>", "<C-w>h")
