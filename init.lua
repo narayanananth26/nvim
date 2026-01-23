@@ -50,3 +50,13 @@ vim.opt.showcmdloc = "statusline"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- Better split behavior
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Highlight active window splits
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#524f67" }) -- Muted from rose-pine
+
+-- Equalize splits automatically
+vim.opt.equalalways = false
