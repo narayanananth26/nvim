@@ -86,8 +86,8 @@ vim.opt.winbar = "%=%m %f"
 -- Better window separators
 vim.opt.fillchars = {
   fold = " ",
-  foldopen = "",
-  foldclose = "",
+  foldopen = "v",
+  foldclose = ">",
   foldsep = " ",
   diff = "╱",
   eob = " ",
