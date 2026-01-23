@@ -27,11 +27,12 @@ vim.opt.guicursor = {
 }
 
 local function set_cursor_colors()
-	local fg = "#1F2933"
-
-	vim.api.nvim_set_hl(0, "CursorNormal", { fg = fg, bg = "#FF8A95" })
-	vim.api.nvim_set_hl(0, "CursorInsert", { fg = fg, bg = "#82C785" })
-	vim.api.nvim_set_hl(0, "CursorVisual", { fg = fg, bg = "#76A8F9" })
+	-- Distinct somber colors for each mode from rose-pine palette
+	-- Using light text for high visibility
+	
+	vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#faf4ed", bg = "#b4637a" }) -- Reddish rose
+	vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#faf4ed", bg = "#56949f" }) -- Muted teal/pine (kept - looks great!)
+	vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#191724", bg = "#faf4ed" }) -- White with black fg
 end
 
 set_cursor_colors()
@@ -39,6 +40,9 @@ set_cursor_colors()
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_cursor_colors,
 })
+
+-- Enable cursorline for better cursor visibility
+vim.opt.cursorline = true
 
 -- show commands in statusline
 vim.opt.showcmd = true
