@@ -68,12 +68,34 @@ vim.api.nvim_create_autocmd("FileType", {
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
+  -- Show diagnostic messages inline (VSCode style)
+  virtual_text = {
+    spacing = 4,
+    prefix = "●",
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+    },
+  },
+  -- Show signs in the gutter
   signs = {
     text = {
-      [severity.ERROR] = " ",
-      [severity.WARN] = " ",
+      [severity.ERROR] = " ",
+      [severity.WARN] = " ",
       [severity.HINT] = "󰠠 ",
-      [severity.INFO] = " ",
+      [severity.INFO] = " ",
     },
+  },
+  -- Underline diagnostics
+  underline = true,
+  -- Update diagnostics while typing
+  update_in_insert = false,
+  -- Show diagnostics in order of severity
+  severity_sort = true,
+  -- Floating window config
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
   },
 })
