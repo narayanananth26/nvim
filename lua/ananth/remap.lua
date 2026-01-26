@@ -43,6 +43,11 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
+-- buffer navigation (VSCode-like)
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true, desc = "Previous buffer" })
+vim.keymap.set("n", "<leader><Tab>", ":Telescope buffers<CR>", { silent = true, desc = "Buffer picker" })
+
 -- git keymaps
 vim.keymap.set("n", "<leader>gs", "<cmd>0G<CR>", { desc = "Git Status" })
 vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })

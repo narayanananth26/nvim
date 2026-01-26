@@ -7,7 +7,6 @@ vim.o.relativenumber = true
 vim.o.tabstop = 4
 vim.o.swapfile = false
 
--- Fast ESC response (no delay)
 vim.opt.timeoutlen = 300    -- Time to wait for mapped sequence (ms)
 vim.opt.ttimeoutlen = 10    -- Time to wait for key code sequence (ms)
 
@@ -31,11 +30,9 @@ vim.opt.guicursor = {
 }
 
 local function set_cursor_colors()
-	-- Distinct somber colors for each mode from rose-pine palette
-	-- Using light text for high visibility
 	
 	vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#faf4ed", bg = "#b4637a" }) -- Reddish rose
-	vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#faf4ed", bg = "#56949f" }) -- Muted teal/pine (kept - looks great!)
+	vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#faf4ed", bg = "#56949f" }) -- Muted teal/pine 
 	vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#191724", bg = "#faf4ed" }) -- White with black fg
 end
 
