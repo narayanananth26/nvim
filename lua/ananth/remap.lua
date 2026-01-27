@@ -49,5 +49,5 @@ vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true, desc = "Previo
 vim.keymap.set("n", "<leader><Tab>", ":Telescope buffers<CR>", { silent = true, desc = "Buffer picker" })
 
 -- git keymaps
-vim.keymap.set("n", "<leader>gs", "<cmd>0G<CR>", { desc = "Git Status" })
+vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Git Status" })
 vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })
