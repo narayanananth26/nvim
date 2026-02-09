@@ -72,6 +72,26 @@ return {
 						},
 					})
 				end,
+				
+				-- Emmet LSP for HTML/CSS abbreviations
+				["emmet_ls"] = function()
+					lspconfig.emmet_ls.setup({
+						capabilities = capabilities,
+						filetypes = {
+							"html",
+							"css",
+							"scss",
+							"sass",
+							"less",
+							"javascript",
+							"javascriptreact",
+							"typescript",
+							"typescriptreact",
+							"vue",
+							"svelte",
+						},
+					})
+				end,
 			})
 		end,
 		dependencies = {
