@@ -9,6 +9,7 @@ return {
 			{ "<leader>kt", "<cmd>lua require('kulala').toggle_view()<CR>", desc = "Toggle HTTP response view" },
 			{ "<leader>kc", "<cmd>lua require('kulala').copy()<CR>", desc = "Copy HTTP request as cURL" },
 			{ "<leader>ks", "<cmd>lua require('kulala').scratchpad()<CR>", desc = "Open HTTP scratchpad" },
+			   { "<leader>ke", "<cmd>lua require('kulala').set_selected_env()<CR>", desc = "Select environment" },
 		},
 		config = function()
 			require("kulala").setup({
