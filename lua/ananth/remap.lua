@@ -3,12 +3,12 @@ vim.g.maplocalleader = "\\"
 
 -- write and quit
 vim.keymap.set("n", "<leader>w", function()
+	require("conform").format({ lsp_format = "fallback" })
 	vim.cmd("write")
-	vim.lsp.buf.format()
 end, { desc = "Write and format" })
 vim.keymap.set("n", "<leader>q", ":quit<CR>")
 vim.keymap.set("n", "<leader>z", function()
-	vim.lsp.buf.format()
+	require("conform").format({ lsp_format = "fallback" })
 	vim.cmd("write")
 	vim.cmd("quit")
 end, { desc = "Format, write, and quit" })
@@ -23,7 +23,9 @@ vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Open Lazy.nvim" })
 vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>", { desc = "Open Lazy.nvim" })
 
 -- language format
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>lf", function()
+	require("conform").format({ lsp_format = "fallback" })
+end, { desc = "Format buffer" })
 
 -- clipboard keymaps
 vim.keymap.set("n", "<leader>y", '"+y')
