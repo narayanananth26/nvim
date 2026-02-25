@@ -1,3 +1,7 @@
-# super based config
+# Super based Neovim config
 
-my nvim is better than your nvim
+```rust
+fn main() {
+   println!("vim btw ;)");
+}
+```
