@@ -5,7 +5,7 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"clangd",
-				-- "ts_ls", -- Using typescript-tools.nvim instead for better TypeScript support
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -73,25 +73,58 @@ return {
 					})
 				end,
 				
-				-- Emmet LSP for HTML/CSS abbreviations
-				["emmet_ls"] = function()
-					lspconfig.emmet_ls.setup({
-						capabilities = capabilities,
-						filetypes = {
-							"html",
-							"css",
-							"scss",
-							"sass",
-							"less",
-							"javascript",
-							"javascriptreact",
-							"typescript",
-							"typescriptreact",
-							"vue",
-							"svelte",
+			-- TypeScript/JavaScript LSP
+			["ts_ls"] = function()
+				lspconfig.ts_ls.setup({
+					capabilities = capabilities,
+					settings = {
+						typescript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
 						},
-					})
-				end,
+						javascript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+					},
+				})
+			end,
+
+			-- Emmet LSP for HTML/CSS abbreviations
+			["emmet_ls"] = function()
+				lspconfig.emmet_ls.setup({
+					capabilities = capabilities,
+					filetypes = {
+						"html",
+						"css",
+						"scss",
+						"sass",
+						"less",
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+						"vue",
+						"svelte",
+					},
+				})
+			end,
 			})
 		end,
 		dependencies = {
