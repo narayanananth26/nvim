@@ -2,7 +2,6 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
-			-- list of servers for mason to install
 			ensure_installed = {
 				"clangd",
 				"ts_ls",
@@ -20,112 +19,91 @@ return {
 		},
 		config = function(_, opts)
 			local mason_lspconfig = require("mason-lspconfig")
-			local lspconfig = require("lspconfig")
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
-			
-			-- Enhanced capabilities for auto-completion and auto-import
+
 			local capabilities = cmp_nvim_lsp.default_capabilities()
-			
-			mason_lspconfig.setup(opts)
-			
-			-- Setup handlers for automatic server configuration
-			mason_lspconfig.setup_handlers({
-				-- Default handler for all servers
-				function(server_name)
-					lspconfig[server_name].setup({
-						capabilities = capabilities,
-					})
-				end,
-				
-				-- Lua LSP with Neovim-specific settings
-				["lua_ls"] = function()
-					lspconfig.lua_ls.setup({
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								diagnostics = {
-									globals = { "vim" },
-								},
-								workspace = {
-									library = {
-										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-										[vim.fn.stdpath("config") .. "/lua"] = true,
-									},
-								},
-							},
+
+			-- Set capabilities for all servers
+			vim.lsp.config("*", { capabilities = capabilities })
+
+			-- Lua LSP with Neovim-specific settings
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
 						},
-					})
-				end,
-				
-				-- Python LSP with auto-import support
-				["pyright"] = function()
-					lspconfig.pyright.setup({
-						capabilities = capabilities,
-						settings = {
-							python = {
-								analysis = {
-									autoSearchPaths = true,
-									useLibraryCodeForTypes = true,
-									diagnosticMode = "workspace",
-								},
-							},
-						},
-					})
-				end,
-				
-			-- TypeScript/JavaScript LSP
-			["ts_ls"] = function()
-				lspconfig.ts_ls.setup({
-					capabilities = capabilities,
-					settings = {
-						typescript = {
-							inlayHints = {
-								includeInlayParameterNameHints = "all",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
-							},
-						},
-						javascript = {
-							inlayHints = {
-								includeInlayParameterNameHints = "all",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
+						workspace = {
+							library = {
+								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+								[vim.fn.stdpath("config") .. "/lua"] = true,
 							},
 						},
 					},
-				})
-			end,
+				},
+			})
+
+			-- Python LSP with auto-import support
+			vim.lsp.config("pyright", {
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "workspace",
+						},
+					},
+				},
+			})
+
+			-- TypeScript/JavaScript LSP
+			vim.lsp.config("ts_ls", {
+				settings = {
+					typescript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+				},
+			})
 
 			-- Emmet LSP for HTML/CSS abbreviations
-			["emmet_ls"] = function()
-				lspconfig.emmet_ls.setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"css",
-						"scss",
-						"sass",
-						"less",
-						"javascript",
-						"javascriptreact",
-						"typescript",
-						"typescriptreact",
-						"vue",
-						"svelte",
-					},
-				})
-			end,
+			vim.lsp.config("emmet_ls", {
+				filetypes = {
+					"html",
+					"css",
+					"scss",
+					"sass",
+					"less",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"vue",
+					"svelte",
+				},
 			})
+
+			mason_lspconfig.setup(opts)
 		end,
 		dependencies = {
 			{

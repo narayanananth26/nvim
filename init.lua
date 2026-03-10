@@ -12,33 +12,33 @@ vim.opt.ttimeoutlen = 10 -- Time to wait for key code sequence (ms)
 
 -- yank highlight
 vim.api.nvim_create_autocmd("textyankpost", {
-    group = vim.api.nvim_create_augroup("highlight_yank", {}),
-    desc = "hightlight selection on yank",
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({ higroup = "incsearch", timeout = 150 })
-    end,
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "hightlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "incsearch", timeout = 150 })
+	end,
 })
 
 -- cursor colors based on mode
 vim.opt.guicursor = {
-    "n:block-CursorNormal",
-    "v:block-CursorVisual",
-    "i-ci:block-CursorInsert-blinkon1",
-    "r-cr:hor20-CursorReplace",
-    "o:hor50-CursorOperator",
+	"n:block-CursorNormal",
+	"v:block-CursorVisual",
+	"i-ci:block-CursorInsert-blinkon1",
+	"r-cr:hor20-CursorReplace",
+	"o:hor50-CursorOperator",
 }
 
 local function set_cursor_colors()
-    vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#faf4ed", bg = "#b4637a" }) -- Reddish rose
-    vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#faf4ed", bg = "#56949f" }) -- Muted teal/pine
-    vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#191724", bg = "#faf4ed" }) -- White with black fg
+	vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#faf4ed", bg = "#b4637a" }) -- Reddish rose
+	vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#faf4ed", bg = "#56949f" }) -- Muted teal/pine
+	vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#191724", bg = "#faf4ed" }) -- White with black fg
 end
 
 set_cursor_colors()
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = set_cursor_colors,
+	callback = set_cursor_colors,
 })
 
 -- Enable cursorline for better cursor visibility
@@ -80,32 +80,31 @@ vim.opt.winbar = "%=%m %f"
 
 -- Better window separators
 vim.opt.fillchars = {
-    fold = " ",
-    foldopen = "v",
-    foldclose = ">",
-    foldsep = " ",
-    diff = "╱",
-    eob = " ",
-    vert = "│",
-    horiz = "─",
+	fold = " ",
+	foldopen = "v",
+	foldclose = ">",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+	vert = "│",
+	horiz = "─",
 }
-
 
 -- Bordered floating windows globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or "rounded"
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or "rounded"
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 -- Auto save on focus change
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
-    group = vim.api.nvim_create_augroup("AutoSave", { clear = true }),
-    desc = "Auto save on focus change",
-    callback = function()
-        if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
-            vim.cmd("silent! w")
-        end
-    end,
+	group = vim.api.nvim_create_augroup("AutoSave", { clear = true }),
+	desc = "Auto save on focus change",
+	callback = function()
+		if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+			vim.cmd("silent! w")
+		end
+	end,
 })
