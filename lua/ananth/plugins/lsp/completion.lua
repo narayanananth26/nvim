@@ -81,6 +81,17 @@ return {
 				},
 			})
 
+			cmp.setup.filetype({ "typescriptreact", "javascriptreact" }, {
+				sources = {
+					{
+						name = "nvim_lsp",
+						entry_filter = function(entry)
+							return entry:get_kind() ~= require("cmp.types").lsp.CompletionItemKind.Snippet
+						end,
+					},
+				},
+			})
+
 			cmp.setup.cmdline("/", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {

@@ -11,7 +11,6 @@ return {
 				"svelte",
 				"lua_ls",
 				"graphql",
-				"emmet_ls",
 				"prismals",
 				"pyright",
 				"eslint",
@@ -86,24 +85,7 @@ return {
 				},
 			})
 
-			-- Emmet LSP for HTML/CSS abbreviations
-			vim.lsp.config("emmet_ls", {
-				filetypes = {
-					"html",
-					"css",
-					"scss",
-					"sass",
-					"less",
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-					"vue",
-					"svelte",
-				},
-			})
-
-			mason_lspconfig.setup(opts)
+mason_lspconfig.setup(opts)
 		end,
 		dependencies = {
 			{
