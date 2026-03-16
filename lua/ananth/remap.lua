@@ -50,6 +50,23 @@ vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true, desc = "Next buffer"
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true, desc = "Previous buffer" })
 vim.keymap.set("n", "<leader><Tab>", ":Telescope buffers<CR>", { silent = true, desc = "Buffer picker" })
 
+-- open :messages in a navigable scratch buffer
+vim.keymap.set("n", "<leader>m", function()
+	vim.schedule(function()
+		local output = vim.api.nvim_exec2("messages", { output = true }).output
+		local lines = vim.split(output, "\n")
+		vim.cmd("botright new")
+		local buf = vim.api.nvim_get_current_buf()
+		vim.bo[buf].buftype = "nofile"
+		vim.bo[buf].buflisted = false
+		vim.bo[buf].modifiable = true
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+		vim.bo[buf].modifiable = false
+		vim.api.nvim_win_set_cursor(0, { #lines, 0 })
+		vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
+	end)
+end, { desc = "Open messages buffer" })
+
 -- git keymaps
 vim.keymap.set("n", "<leader>gs", "<cmd>Git | only<CR>", { desc = "Git Status" })
 vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })

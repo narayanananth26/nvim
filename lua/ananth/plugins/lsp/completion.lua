@@ -31,9 +31,9 @@ return {
 						luasnip.lsp_expand(args.body)
 					end,
 				},
-				preselect = cmp.PreselectMode.Item,
+				preselect = cmp.PreselectMode.None,
 				completion = {
-					completeopt = "menu,menuone,noinsert",
+					completeopt = "menu,menuone,noselect",
 				},
 				window = {
 					completion = {

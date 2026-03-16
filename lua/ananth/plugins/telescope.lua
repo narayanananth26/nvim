@@ -10,6 +10,22 @@ return {
     config = function()
       local builtin = require("telescope.builtin")
 
+      require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = {},
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = false,
+            find_command = { "fd", "--type", "f", "--hidden", "--no-ignore-vcs", "--exclude", ".git", "--exclude", "node_modules" },
+          },
+          live_grep = {
+            additional_args = { "--hidden", "--glob", "!.git", "--glob", "!node_modules" },
+          },
+        },
+      })
+
       require("telescope").load_extension("noice")
       require("telescope").load_extension("ui-select")
 

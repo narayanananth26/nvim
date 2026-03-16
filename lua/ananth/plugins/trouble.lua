@@ -9,17 +9,23 @@ return {
 			auto_preview = true,
 			auto_refresh = true,
 			focus = true,
+			win = { size = 50 },
+			modes = {
+				symbols = {
+					win = { size = 50 },
+				},
+			},
 		},
 		keys = {
 			{
 				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle focus=true<cr>",
+				"<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
 				desc = "Toggle Diagnostics (Trouble)",
 			},
 			{
-				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
+				"<leader>XX",
+				"<cmd>Trouble diagnostics toggle focus=true<cr>",
+				desc = "All Diagnostics (Trouble)",
 			},
 			{
 				"<leader>xs",

@@ -20,26 +20,15 @@ vim.api.nvim_create_autocmd("textyankpost", {
 	end,
 })
 
--- cursor colors based on mode
+-- line cursor in insert mode, block otherwise
 vim.opt.guicursor = {
-	"n:block-CursorNormal",
-	"v:block-CursorVisual",
-	"i-ci:block-CursorInsert-blinkon1",
-	"r-cr:hor20-CursorReplace",
-	"o:hor50-CursorOperator",
+	"n-v-c:block",
+	"i-ci-ve:ver25",
+	"r-cr:hor20",
+	"o:hor50",
 }
 
-local function set_cursor_colors()
-	vim.api.nvim_set_hl(0, "CursorNormal", { fg = "#faf4ed", bg = "#b4637a" }) -- Reddish rose
-	vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#faf4ed", bg = "#56949f" }) -- Muted teal/pine
-	vim.api.nvim_set_hl(0, "CursorVisual", { fg = "#191724", bg = "#faf4ed" }) -- White with black fg
-end
-
-set_cursor_colors()
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-	callback = set_cursor_colors,
-})
+vim.opt.showmode = true
 
 -- Enable cursorline for better cursor visibility
 vim.opt.cursorline = true
