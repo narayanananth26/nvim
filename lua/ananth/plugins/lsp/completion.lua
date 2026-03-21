@@ -83,6 +83,7 @@ return {
 
 			cmp.setup.filetype({ "typescriptreact", "javascriptreact" }, {
 				sources = {
+					{ name = "luasnip" },
 					{
 						name = "nvim_lsp",
 						entry_filter = function(entry)
