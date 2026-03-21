@@ -6,13 +6,15 @@ return {
 		opts = {
 			modes = {
 				search = {
-					enabled = true,
+					enabled = false,
 				},
 			},
+			label = {
+				hl_group = "FlashLabel",
+			},
 			highlight = {
-				label = { fg = "#1F2933", bg = "#FF8A95" }, -- jump labels (pink variant)
-				match = { fg = "#1F2933", bg = "#FF6B7C" }, -- char you jump to (slightly darker pink)
-				backdrop = { fg = "#AAAAAA", bg = nil }, -- dims other text slightly
+				match = { fg = "#1F2933", bg = "#FF6B7C" },
+				backdrop = { fg = "#AAAAAA", bg = nil },
 			},
 		},
 		keys = {
