@@ -12,7 +12,10 @@ return {
 			win = { size = 50 },
 			modes = {
 				symbols = {
-					win = { size = 50 },
+					win = { size = 15, position = "bottom" },
+				},
+				diagnostics = {
+					win = { size = 15 },
 				},
 			},
 		},
