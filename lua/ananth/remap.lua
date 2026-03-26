@@ -71,5 +71,5 @@ end, { desc = "Open messages buffer" })
 vim.cmd("cnoreabbrev git Git")
 
 -- git keymaps
-vim.keymap.set("n", "<leader>gs", "<cmd>Git | only<CR>", { desc = "Git Status" })
+vim.keymap.set("n", "<leader>gs", "<cmd>tabnew | Git | only<CR>", { desc = "Git Status" })
 vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })
