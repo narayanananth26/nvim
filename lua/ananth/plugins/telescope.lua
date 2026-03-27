@@ -1,38 +1,48 @@
 return {
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-telescope/telescope-ui-select.nvim",
-      "folke/noice.nvim",
-    },
-    config = function()
-      local builtin = require("telescope.builtin")
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			"nvim-telescope/telescope-ui-select.nvim",
+			"folke/noice.nvim",
+		},
+		config = function()
+			local builtin = require("telescope.builtin")
 
-      require("telescope").setup({
-        defaults = {
-          file_ignore_patterns = {},
-        },
-        pickers = {
-          find_files = {
-            hidden = true,
-            no_ignore = false,
-            find_command = { "fd", "--type", "f", "--hidden", "--no-ignore-vcs", "--exclude", ".git", "--exclude", "node_modules" },
-          },
-          live_grep = {
-            additional_args = { "--hidden", "--glob", "!.git", "--glob", "!node_modules" },
-          },
-        },
-      })
+			require("telescope").setup({
+				defaults = {
+					file_ignore_patterns = {},
+				},
+				pickers = {
+					find_files = {
+						hidden = true,
+						no_ignore = false,
+						find_command = {
+							"fd",
+							"--type",
+							"f",
+							"--hidden",
+							"--no-ignore-vcs",
+							"--exclude",
+							".git",
+							"--exclude",
+							"node_modules",
+						},
+					},
+					live_grep = {
+						additional_args = { "--hidden", "--glob", "!.git", "--glob", "!node_modules" },
+					},
+				},
+			})
 
-      require("telescope").load_extension("noice")
-      require("telescope").load_extension("ui-select")
+			require("telescope").load_extension("noice")
+			require("telescope").load_extension("ui-select")
 
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-      vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-    end,
-  },
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+			vim.keymap.set("n", "<leader>gg", builtin.live_grep, { desc = "Telescope live grep" })
+			vim.keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Telescope buffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+		end,
+	},
 }
