@@ -4,7 +4,7 @@ require("ananth")
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.tabstop = 4
+vim.o.tabstop = 2
 vim.o.swapfile = false
 
 vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence (ms)
