@@ -33,6 +33,9 @@ vim.opt.guicursor = {
 
 vim.opt.showmode = true
 
+-- Scroll offset
+vim.o.scrolloff = 12
+
 -- Enable cursorline for better cursor visibility
 vim.opt.cursorline = true
 
