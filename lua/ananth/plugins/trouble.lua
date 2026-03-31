@@ -31,11 +31,11 @@ return {
 				desc = "All Diagnostics (Trouble)",
 			},
 			{
-				"<leader>xs",
+				"<leader>ss",
 				"<cmd>Trouble symbols toggle focus=true<cr>",
 				desc = "Symbols (Trouble)",
 			},
-			{
+		{
 				"<leader>xl",
 				"<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
 				desc = "LSP Definitions / references / ... (Trouble)",
