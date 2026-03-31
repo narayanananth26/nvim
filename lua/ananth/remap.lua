@@ -68,7 +68,9 @@ vim.keymap.set("n", "<leader>m", function()
 end, { desc = "Open messages buffer" })
 
 -- alias :git to :Git (fugitive)
-vim.cmd("cnoreabbrev git Git")
+vim.cmd([[
+				cnoreabbrev <expr> git getcmdtype() == ":" ? "Git" : "git"
+]])
 
 -- git keymaps
 vim.keymap.set("n", "<leader>gs", "<cmd>tabnew | Git | only<CR>", { desc = "Git Status" })
