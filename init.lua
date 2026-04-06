@@ -10,17 +10,17 @@ vim.o.softtabstop = 2
 vim.o.expandtab = true
 vim.o.swapfile = false
 
-vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence (ms)
+vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence (ms)ini
 vim.opt.ttimeoutlen = 10 -- Time to wait for key code sequence (ms)
 
 -- yank highlight
 vim.api.nvim_create_autocmd("textyankpost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "hightlight selection on yank",
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "incsearch", timeout = 150 })
-	end,
+  group = vim.api.nvim_create_augroup("highlight_yank", {}),
+  desc = "hightlight selection on yank",
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({ higroup = "incsearch", timeout = 150 })
+  end,
 })
 
 -- line cursor in insert mode, block otherwise
@@ -87,6 +87,7 @@ vim.opt.fillchars = {
 
 -- Bordered floating windows globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+---@diagnostic disable-next-line: duplicate-set-field
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts = opts or {}
 	opts.border = opts.border or "rounded"
