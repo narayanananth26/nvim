@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- set keybinds
 		opts.desc = "Show LSP references"
-		keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+		keymap.set("n", "grr", "<cmd>Trouble lsp_references<CR>", vim.tbl_extend("force", opts, { nowait = true }))
 
 		opts.desc = "Go to declaration"
 		keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
@@ -61,7 +61,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop = 2
 	end,
 })
-
 
 -- vim.lsp.inlay_hint.enable(true)
 
