@@ -7,10 +7,8 @@ vim.keymap.set("n", "<leader>w", function()
 	vim.cmd("write")
 end, { desc = "Write and format" })
 vim.keymap.set("n", "<leader>q", function()
-	local listed = vim.fn.getbufinfo({ buflisted = 1 })
-	if #listed <= 1 and vim.fn.confirm("Quit?", "&Yes\n&No") ~= 1 then return end
 	vim.cmd("quit")
-end, { desc = "Quit (confirm if last buffer)" })
+end, { desc = "Quit" })
 vim.keymap.set("n", "<leader>z", function()
 	require("conform").format({ lsp_format = "fallback" })
 	vim.cmd("write")
@@ -66,6 +64,18 @@ vim.cmd([[
 -- git keymaps
 vim.keymap.set("n", "<leader>gs", "<cmd>Git | only<CR>", { desc = "Git Status" })
 vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })
+
+-- resize splits (directional: move the border in the pressed direction)
+vim.keymap.set("n", "<M-k>", "<cmd>resize +2<CR>", { silent = true, desc = "Move border up" })
+vim.keymap.set("n", "<M-j>", "<cmd>resize -2<CR>", { silent = true, desc = "Move border down" })
+vim.keymap.set("n", "<M-l>", function()
+	local is_rightmost = vim.fn.winnr() == vim.fn.winnr("l")
+	vim.cmd(is_rightmost and "vertical resize -2" or "vertical resize +2")
+end, { silent = true, desc = "Move border right" })
+vim.keymap.set("n", "<M-h>", function()
+	local is_leftmost = vim.fn.winnr() == vim.fn.winnr("h")
+	vim.cmd(is_leftmost and "vertical resize -2" or "vertical resize +2")
+end, { silent = true, desc = "Move border left" })
 
 -- quifix
 vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix next" })
