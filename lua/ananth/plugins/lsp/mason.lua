@@ -85,7 +85,10 @@ return {
 				},
 			})
 
-mason_lspconfig.setup(opts)
+			-- sourcekit-lsp is bundled with Xcode and cannot be installed via Mason
+			vim.lsp.enable("sourcekit")
+
+			mason_lspconfig.setup(opts)
 		end,
 		dependencies = {
 			{
