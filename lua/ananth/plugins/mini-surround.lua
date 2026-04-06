@@ -1,10 +1,3 @@
 return {
-  {
-    "nvim-mini/mini.nvim",
-    version = false,
-    event = "VeryLazy",
-    config = function()
-      require("mini.surround").setup()
-    end,
-  },
+	{ "nvim-mini/mini.surround", version = false, opts = {} },
 }
