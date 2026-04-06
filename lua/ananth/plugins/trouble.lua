@@ -11,11 +11,17 @@ return {
 			focus = true,
 			win = { size = 50 },
 			modes = {
-				symbols = {
+				lsp = {
+					win = { size = 20, position = "bottom" },
+				},
+				lsp_references = {
 					win = { size = 15, position = "bottom" },
 				},
+				symbols = {
+					win = { size = 20, position = "bottom" },
+				},
 				diagnostics = {
-					win = { size = 15 },
+					win = { size = 20, position = "bottom" },
 				},
 			},
 		},
@@ -26,7 +32,7 @@ return {
 				desc = "Toggle Diagnostics (Trouble)",
 			},
 			{
-				"<leader>XX",
+				"<leader>xa",
 				"<cmd>Trouble diagnostics toggle focus=true<cr>",
 				desc = "All Diagnostics (Trouble)",
 			},
@@ -35,9 +41,9 @@ return {
 				"<cmd>Trouble symbols toggle focus=true<cr>",
 				desc = "Symbols (Trouble)",
 			},
-		{
+			{
 				"<leader>xl",
-				"<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
+				"<cmd>Trouble lsp toggle focus=true<cr>",
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
 			{
@@ -46,7 +52,7 @@ return {
 				desc = "Location List (Trouble)",
 			},
 			{
-				"<leader>xQ",
+				"<leader>xq",
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
 			},
