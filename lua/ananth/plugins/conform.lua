@@ -4,6 +4,8 @@ return {
 	cmd = { "ConformInfo" },
 	opts = {
 		formatters_by_ft = {
+			c = { "clang-format" },
+			cpp = { "clang-format" },
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			javascript = { "prettier", stop_after_first = true },
