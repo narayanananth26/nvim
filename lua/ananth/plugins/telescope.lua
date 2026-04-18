@@ -18,6 +18,8 @@ return {
 				vim.cmd("Git show " .. selection.value)
 			end
 
+			require("telescope").load_extension("fzf")
+
 			require("telescope").setup({
 				defaults = {
 					file_ignore_patterns = {},
