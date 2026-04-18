@@ -80,3 +80,6 @@ end, { silent = true, desc = "Move border left" })
 -- quifix
 vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix next" })
 vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix prev" })
+
+-- select all
+vim.keymap.set("n", "<leader>a", "gg0vG$", { desc = "Visually select entire buffer" })
