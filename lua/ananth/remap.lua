@@ -51,8 +51,8 @@ vim.keymap.set("n", "<leader>m", function()
 		vim.bo[buf].modifiable = true
 		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 		vim.bo[buf].modifiable = false
+        vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
 		vim.api.nvim_win_set_cursor(0, { #lines, 0 })
-		vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
 	end)
 end, { desc = "Open messages buffer" })
 
@@ -66,13 +66,13 @@ vim.keymap.set("n", "<leader>gs", "<cmd>Git | only<CR>", { desc = "Git Status" }
 vim.keymap.set("n", ",,", "<C-^>", { desc = "Toggle buffers" })
 
 -- resize splits (directional: move the border in the pressed direction)
-vim.keymap.set("n", "<M-k>", "<cmd>resize +2<CR>", { silent = true, desc = "Move border up" })
-vim.keymap.set("n", "<M-j>", "<cmd>resize -2<CR>", { silent = true, desc = "Move border down" })
-vim.keymap.set("n", "<M-l>", function()
+vim.keymap.set("n", "<M-Up>", "<cmd>resize +2<CR>", { silent = true, desc = "Move border up" })
+vim.keymap.set("n", "<M-Down>", "<cmd>resize -2<CR>", { silent = true, desc = "Move border down" })
+vim.keymap.set("n", "<M-Right>", function()
 	local is_rightmost = vim.fn.winnr() == vim.fn.winnr("l")
 	vim.cmd(is_rightmost and "vertical resize -2" or "vertical resize +2")
 end, { silent = true, desc = "Move border right" })
-vim.keymap.set("n", "<M-h>", function()
+vim.keymap.set("n", "<M-Left>", function()
 	local is_leftmost = vim.fn.winnr() == vim.fn.winnr("h")
 	vim.cmd(is_leftmost and "vertical resize -2" or "vertical resize +2")
 end, { silent = true, desc = "Move border left" })
@@ -83,3 +83,15 @@ vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix prev" })
 
 -- select all
 vim.keymap.set("n", "<leader>a", "gg0vG$", { desc = "Visually select entire buffer" })
+
+-- move line up/down 
+vim.keymap.set("n", "<M-k>", "<cmd>move .-2<CR>==", { silent = true, desc = "Move line up" })
+vim.keymap.set("n", "<M-j>", "<cmd>move .+1<CR>==", { silent = true, desc = "Move line down" })
+vim.keymap.set("v", "<M-k>", ":move '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
+vim.keymap.set("v", "<M-j>", ":move '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
+
+-- duplicate line up/down 
+vim.keymap.set("n", "<S-M-k>", "yyP", { silent = true, desc = "Duplicate line up" })
+vim.keymap.set("n", "<S-M-j>", "yyp", { silent = true, desc = "Duplicate line down" })
+vim.keymap.set("v", "<S-M-k>", "y`<Pgv", { silent = true, desc = "Duplicate selection up" })
+vim.keymap.set("v", "<S-M-k>", "y`>pgv", { silent = true, desc = "Duplicate selection down" })
