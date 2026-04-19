@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>m", function()
 		vim.bo[buf].modifiable = true
 		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 		vim.bo[buf].modifiable = false
-        vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
+		vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
 		vim.api.nvim_win_set_cursor(0, { #lines, 0 })
 	end)
 end, { desc = "Open messages buffer" })
@@ -60,6 +60,20 @@ end, { desc = "Open messages buffer" })
 vim.cmd([[
 				cnoreabbrev <expr> git getcmdtype() == ":" ? "Git" : "git"
 ]])
+
+-- git push --force
+vim.keymap.set("n", "gpf", function()
+	vim.notify("git push --force...", vim.log.levels.INFO)
+	vim.system({ "git", "push", "--force" }, { text = true }, function(result)
+		vim.schedule(function()
+			if result.code == 0 then
+				vim.notify("Push done", vim.log.levels.INFO)
+			else
+				vim.notify("Push failed:\n" .. (result.stderr or ""), vim.log.levels.ERROR)
+			end
+		end)
+	end)
+end, { desc = "Git push force (async)" })
 
 -- git keymaps
 vim.keymap.set("n", "<leader>gs", "<cmd>Git | only<CR>", { desc = "Git Status" })
@@ -84,13 +98,13 @@ vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix prev" })
 -- select all
 vim.keymap.set("n", "<leader>a", "gg0vG$", { desc = "Visually select entire buffer" })
 
--- move line up/down 
+-- move line up/down
 vim.keymap.set("n", "<M-k>", "<cmd>move .-2<CR>==", { silent = true, desc = "Move line up" })
 vim.keymap.set("n", "<M-j>", "<cmd>move .+1<CR>==", { silent = true, desc = "Move line down" })
 vim.keymap.set("v", "<M-k>", ":move '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
 vim.keymap.set("v", "<M-j>", ":move '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
 
--- duplicate line up/down 
+-- duplicate line up/down
 vim.keymap.set("n", "<S-M-k>", "yyP", { silent = true, desc = "Duplicate line up" })
 vim.keymap.set("n", "<S-M-j>", "yyp", { silent = true, desc = "Duplicate line down" })
 vim.keymap.set("v", "<S-M-k>", "y`<Pgv", { silent = true, desc = "Duplicate selection up" })
