@@ -31,11 +31,10 @@ vim.opt.guicursor = {
 	"o:hor50",
 }
 
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 -- Scroll offset
 vim.o.scrolloff = 12
-
 -- Enable cursorline for better cursor visibility
 vim.opt.cursorline = true
 
