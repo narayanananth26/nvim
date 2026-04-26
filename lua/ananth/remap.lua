@@ -105,7 +105,15 @@ vim.keymap.set("v", "<M-k>", ":move '<-2<CR>gv=gv", { silent = true, desc = "Mov
 vim.keymap.set("v", "<M-j>", ":move '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
 
 -- duplicate line up/down
-vim.keymap.set("n", "<S-M-k>", "yyP", { silent = true, desc = "Duplicate line up" })
-vim.keymap.set("n", "<S-M-j>", "yyp", { silent = true, desc = "Duplicate line down" })
-vim.keymap.set("v", "<S-M-k>", "y`<Pgv", { silent = true, desc = "Duplicate selection up" })
-vim.keymap.set("v", "<S-M-k>", "y`>pgv", { silent = true, desc = "Duplicate selection down" })
+vim.keymap.set("n", "<C-M-k>", "yyP", { silent = true, desc = "Duplicate line up" })
+vim.keymap.set("n", "<C-M-j>", "yyp", { silent = true, desc = "Duplicate line down" })
+vim.keymap.set("v", "<C-M-k>", "y'<Pgv", { silent = true, desc = "Duplicate selection up" })
+vim.keymap.set("v", "<C-M-j>", "y'>pgv", { silent = true, desc = "Duplicate selection down" })
+
+-- append/prepend empty line(s)
+vim.keymap.set("n", "]<Space>", function()
+	vim.cmd("put =repeat(nr2char(10), " .. vim.v.count1 .. ")")
+end, { desc = "Append empty line(s) below" })
+vim.keymap.set("n", "[<Space>", function()
+	vim.cmd("put! =repeat(nr2char(10), " .. vim.v.count1 .. ")")
+end, { desc = "Prepend empty line(s) above" })
