@@ -75,6 +75,7 @@ vim.opt.foldlevelstart = 99
 -- Winbar showing current file path
 vim.opt.winbar = "%=%m %f"
 
+
 -- Better window separators
 vim.opt.fillchars = {
 	fold = " ",

@@ -6,6 +6,46 @@ return {
 		local harpoon = require("harpoon")
 		harpoon:setup()
 
+		vim.opt.showtabline = 2
+
+		local function harpoon_tabline()
+			local list = harpoon:list()
+			local items = list.items or {}
+			local current = vim.api.nvim_buf_get_name(0)
+			local cwd = vim.uv.cwd() or vim.fn.getcwd()
+			local parts = {}
+			for i, item in ipairs(items) do
+				local abs = vim.fn.fnamemodify(cwd .. "/" .. item.value, ":p")
+				local name = vim.fn.fnamemodify(item.value, ":t")
+				local hl = (abs == current) and "%#TabLineSel#" or "%#TabLine#"
+				table.insert(parts, hl .. " " .. i .. ":" .. name .. " ")
+			end
+			if #parts == 0 then
+				return "%#TabLineFill# harpoon: empty "
+			end
+			return table.concat(parts, "%#TabLineFill# ") .. "%#TabLineFill#"
+		end
+
+		_G.HarpoonTabline = harpoon_tabline
+		vim.o.tabline = "%!v:lua.HarpoonTabline()"
+
+		harpoon:extend({
+			LIST_CHANGE = function()
+				vim.cmd.redrawtabline()
+			end,
+			ADD = function()
+				vim.cmd.redrawtabline()
+			end,
+			REMOVE = function()
+				vim.cmd.redrawtabline()
+			end,
+		})
+		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+			callback = function()
+				vim.cmd.redrawtabline()
+			end,
+		})
+
 		vim.keymap.set("n", "<leader>ha", function()
 			harpoon:list():add()
 			vim.notify("Harpoon: added " .. vim.fn.expand("%:t"), vim.log.levels.INFO)
