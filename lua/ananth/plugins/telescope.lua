@@ -59,8 +59,8 @@ return {
 			vim.keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Telescope buffers" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 			vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Git files" })
-			vim.keymap.set("n", "<leader>cc", builtin.git_commits, { desc = "Git commits" })
-			vim.keymap.set("n", "<leader>b", builtin.git_branches, { desc = "Git branches" })
+			vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Git commits" })
+			vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" })
 		end,
 	},
 }
