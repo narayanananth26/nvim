@@ -117,3 +117,6 @@ end, { desc = "Append empty line(s) below" })
 vim.keymap.set("n", "[<Space>", function()
 	vim.cmd("put! =repeat(nr2char(10), " .. vim.v.count1 .. ")")
 end, { desc = "Prepend empty line(s) above" })
+
+-- open oil buffer
+vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Open Oil buffer" })
