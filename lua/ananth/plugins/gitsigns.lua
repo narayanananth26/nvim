@@ -16,11 +16,6 @@ return {
 		vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>", { desc = "Next hunk" })
 		vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>", { desc = "Previous hunk" })
 
-		-- Hunk preview and blame
-		vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
-		vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle line blame" })
-		vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>", { desc = "Blame line" })
-
 		-- Diff view
 		vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis<CR>", { desc = "Diff this file" })
 	end,
