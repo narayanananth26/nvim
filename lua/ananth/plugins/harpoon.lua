@@ -18,7 +18,8 @@ return {
 				local abs = vim.fn.fnamemodify(cwd .. "/" .. item.value, ":p")
 				local name = vim.fn.fnamemodify(item.value, ":t")
 				local hl = (abs == current) and "%#TabLineSel#" or "%#TabLine#"
-				table.insert(parts, hl .. " " .. i .. ":" .. name .. " ")
+				local label = " " .. i .. ":" .. name .. " "
+				table.insert(parts, hl .. "%" .. i .. "@v:lua.HarpoonTablineClick@" .. label .. "%X")
 			end
 			if #parts == 0 then
 				return "%#TabLineFill# harpoon: empty "
@@ -27,6 +28,14 @@ return {
 		end
 
 		_G.HarpoonTabline = harpoon_tabline
+		_G.HarpoonTablineClick = function(minwid, _clicks, button, _mods)
+			if button == "l" then
+				harpoon:list():select(minwid)
+			elseif button == "m" then
+				harpoon:list():remove_at(minwid)
+				vim.cmd.redrawtabline()
+			end
+		end
 		vim.o.tabline = "%!v:lua.HarpoonTabline()"
 
 		harpoon:extend({
