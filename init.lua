@@ -1,5 +1,4 @@
 vim.o.termguicolors = true
-
 require("ananth")
 
 vim.o.number = true
@@ -67,6 +66,9 @@ vim.opt.numberwidth = 3
 -- Highlight current line number differently
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#eb6f92", bold = true }) -- Rose color
 
+-- Subtle cursor line tint
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1f1d2e" })
+
 -- Better fold column
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
@@ -74,7 +76,6 @@ vim.opt.foldlevelstart = 99
 
 -- Winbar showing current file path
 vim.opt.winbar = "%=%m %f"
-
 
 -- Better window separators
 vim.opt.fillchars = {
