@@ -23,6 +23,14 @@ return {
 			require("telescope").setup({
 				defaults = {
 					file_ignore_patterns = {},
+					layout_strategy = "vertical",
+					layout_config = {
+						vertical = {
+							width = { padding = 0 },
+							height = { padding = 0 },
+							preview_height = 0.6,
+						},
+					},
 				},
 				pickers = {
 					find_files = {
