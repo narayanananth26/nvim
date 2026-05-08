@@ -86,7 +86,14 @@ return {
 			})
 
 			-- sourcekit-lsp is bundled with Xcode and cannot be installed via Mason
+			-- Restrict to Swift only; otherwise it claims C/C++/objc and races with clangd
+			vim.lsp.config("sourcekit", { filetypes = { "swift" } })
 			vim.lsp.enable("sourcekit")
+
+			-- Anchor clangd to project markers only
+			vim.lsp.config("clangd", {
+				root_markers = { ".clangd", "compile_commands.json", "compile_flags.txt" },
+			})
 
 			mason_lspconfig.setup(opts)
 		end,
