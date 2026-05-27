@@ -4,7 +4,7 @@ return {
 		dependencies = { "tpope/vim-fugitive" },
 		cmd = { "Flog", "Flogsplit", "Floggit" },
 		keys = {
-			{ "<leader>ll", "<cmd>Flog<CR>", desc = "Git log graph" },
+			{ "<leader>gl", "<cmd>Flog<CR>", desc = "Git log graph" },
 		},
 	},
 }
