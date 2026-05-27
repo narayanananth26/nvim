@@ -62,13 +62,11 @@ return {
 
 			require("telescope").load_extension("ui-select")
 
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-			vim.keymap.set("n", "<leader>gg", builtin.live_grep, { desc = "Telescope live grep" })
-			vim.keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Telescope buffers" })
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-			vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Git files" })
-			vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Git commits" })
-			vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" })
+			vim.keymap.set("n", "<leader>fd", builtin.find_files, { desc = "Telescope find files" })
+			vim.keymap.set("n", "<leader>jk", builtin.live_grep, { desc = "Telescope live grep" })
+			vim.keymap.set("n", "<leader>ht", builtin.help_tags, { desc = "Telescope help tags" })
+			vim.keymap.set("n", "<leader>cm", builtin.git_commits, { desc = "Git commits" })
+			vim.keymap.set("n", "<leader>br", builtin.git_branches, { desc = "Git branches" })
 		end,
 	},
 }
