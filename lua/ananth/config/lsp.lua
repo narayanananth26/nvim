@@ -67,14 +67,7 @@ vim.api.nvim_create_autocmd("FileType", {
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
-	-- Show diagnostic messages inline (VSCode style)
-	virtual_text = {
-		spacing = 2,
-		prefix = "●",
-		severity = {
-			min = vim.diagnostic.severity.HINT,
-		},
-	},
+	virtual_text = false,
 	-- Show signs in the gutter
 	signs = {
 		text = {

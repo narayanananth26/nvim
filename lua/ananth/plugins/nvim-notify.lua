@@ -7,7 +7,7 @@ return {
 			max_width = 40,
 			max_height = 4,
 			render = "minimal",
-			top_down = false,
+			top_down = true,
 			level = vim.log.levels.INFO,
 			background_colour = "#000000",
 			on_open = function(win)
