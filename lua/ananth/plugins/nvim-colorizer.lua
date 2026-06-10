@@ -1,13 +1,13 @@
 
 return {
   {
-    "norcalli/nvim-colorizer.lua",
-    lazy = false,
-    config = function()
-      require("colorizer").setup({
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      filetypes = {
         "*",
         css = { rgb_fn = true },
-      })
-    end,
+      },
+    },
   },
 }
