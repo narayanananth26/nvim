@@ -35,17 +35,14 @@ return {
 				pickers = {
 					find_files = {
 						hidden = true,
-						no_ignore = false,
+						-- Respect .gitignore for everything, but force .env files back in.
+						-- Two fd passes (normal + forced .env*) deduped with awk.
 						find_command = {
-							"fd",
-							"--type",
-							"f",
-							"--hidden",
-							"--no-ignore-vcs",
-							"--exclude",
-							".git",
-							"--exclude",
-							"node_modules",
+							"sh",
+							"-c",
+							"{ fd --type f --hidden --exclude .git --exclude node_modules; "
+								.. "fd --type f --hidden --no-ignore-vcs --exclude .git --exclude node_modules --glob '.env*'; } "
+								.. "| awk '!seen[$0]++'",
 						},
 					},
 					live_grep = {
