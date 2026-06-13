@@ -25,6 +25,25 @@ return {
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 
+			-- nvim-cmp still calls vim.lsp.util.stylize_markdown, which is
+			-- deprecated and will be removed in nvim 0.14. Until cmp fixes it
+			-- upstream, replace it with the treesitter-based rendering that
+			-- vim.lsp.util.open_floating_preview uses internally.
+			vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
+				opts = opts or {}
+				contents = vim.lsp.util._normalize_markdown(contents, { width = opts.max_width })
+				vim.bo[bufnr].filetype = "markdown"
+				vim.treesitter.start(bufnr)
+				vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
+				vim.schedule(function()
+					local win = vim.fn.bufwinid(bufnr)
+					if win ~= -1 then
+						vim.wo[win].conceallevel = 2
+					end
+				end)
+				return contents
+			end
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
