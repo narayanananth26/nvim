@@ -4,7 +4,6 @@ return {
 		opts = {
 			ensure_installed = {
 				"clangd",
-				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -55,35 +54,25 @@ return {
 				},
 			})
 
-			-- TypeScript/JavaScript LSP
-			vim.lsp.config("ts_ls", {
+			-- Installed via `npm install -g @typescript/native-preview`, not Mason
+			vim.lsp.config("tsgo", {
 				settings = {
 					typescript = {
 						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-					},
-					javascript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
+							parameterNames = {
+								enabled = "all",
+								suppressWhenArgumentMatchesName = true,
+							},
+							parameterTypes = { enabled = true },
+							variableTypes = { enabled = true },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
 						},
 					},
 				},
 			})
+			vim.lsp.enable("tsgo")
 
 			-- sourcekit-lsp is bundled with Xcode and cannot be installed via Mason
 			-- Restrict to Swift only; otherwise it claims C/C++/objc and races with clangd
