@@ -93,15 +93,36 @@ return {
 				},
 			})
 
+			local cmdline_mapping = cmp.mapping.preset.cmdline({
+				["<Down>"] = {
+					c = function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end,
+				},
+				["<Up>"] = {
+					c = function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end,
+				},
+			})
+
 			cmp.setup.cmdline("/", {
-				mapping = cmp.mapping.preset.cmdline(),
+				mapping = cmdline_mapping,
 				sources = {
 					{ name = "buffer" },
 				},
 			})
 
 			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
+				mapping = cmdline_mapping,
 				sources = cmp.config.sources({ { name = "path" } }, {
 					{
 						name = "cmdline",
