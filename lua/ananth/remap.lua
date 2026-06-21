@@ -15,9 +15,6 @@ vim.keymap.set("n", "<leader>z", function()
 	vim.cmd("quit")
 end, { desc = "Format, write, and quit" })
 
--- source file
-vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>", { desc = "Open Lazy.nvim" })
-
 -- clipboard keymaps
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
@@ -87,10 +84,6 @@ vim.keymap.set("n", "<M-Left>", function()
 	local is_leftmost = vim.fn.winnr() == vim.fn.winnr("h")
 	vim.cmd(is_leftmost and "vertical resize -2" or "vertical resize +2")
 end, { silent = true, desc = "Move border left" })
-
--- quifix
-vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix next" })
-vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix prev" })
 
 -- select all
 vim.keymap.set("n", "<leader>a", "gg0vG$", { desc = "Visually select entire buffer" })

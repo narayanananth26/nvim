@@ -23,21 +23,19 @@ return {
 				diagnostics = {
 					win = { size = 20, position = "bottom" },
 				},
+				qflist = {
+					win = { size = 20, position = "bottom" },
+				},
 			},
 		},
 		keys = {
 			{
-				"<leader>xx",
+				"<leader>d",
 				"<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
 				desc = "Toggle Diagnostics (Trouble)",
 			},
 			{
-				"<leader>xa",
-				"<cmd>Trouble diagnostics toggle focus=true<cr>",
-				desc = "All Diagnostics (Trouble)",
-			},
-			{
-				"<leader>ss",
+				"<leader>s",
 				"<cmd>Trouble symbols toggle focus=true<cr>",
 				desc = "Symbols (Trouble)",
 			},
@@ -52,9 +50,19 @@ return {
 				desc = "Location List (Trouble)",
 			},
 			{
-				"<leader>xq",
+				"<leader>qf",
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
+			},
+			{
+				"]q",
+				"<cmd>Trouble qflist next jump=true<cr>",
+				desc = "Quickfix next (Trouble)",
+			},
+			{
+				"[q",
+				"<cmd>Trouble qflist prev jump=true<cr>",
+				desc = "Quickfix prev (Trouble)",
 			},
 		},
 	},

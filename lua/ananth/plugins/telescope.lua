@@ -18,10 +18,20 @@ return {
 				vim.cmd("Git show " .. selection.value)
 			end
 
+			-- send picker results to the quickfix list, then open it in Trouble
+			local function send_to_trouble(prompt_bufnr)
+				actions.send_to_qflist(prompt_bufnr)
+				vim.cmd("Trouble qflist open")
+			end
+
 			require("telescope").load_extension("fzf")
 
 			require("telescope").setup({
 				defaults = {
+					mappings = {
+						i = { ["<C-q>"] = send_to_trouble },
+						n = { ["<C-q>"] = send_to_trouble },
+					},
 					file_ignore_patterns = {},
 					layout_strategy = "vertical",
 					layout_config = {
