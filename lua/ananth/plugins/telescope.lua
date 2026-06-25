@@ -72,8 +72,8 @@ return {
 			vim.keymap.set("n", "<leader>fd", builtin.find_files, { desc = "Telescope find files" })
 			vim.keymap.set("n", "<leader>jk", builtin.live_grep, { desc = "Telescope live grep" })
 			vim.keymap.set("n", "<leader>ht", builtin.help_tags, { desc = "Telescope help tags" })
-			vim.keymap.set("n", "<leader>cm", builtin.git_commits, { desc = "Git commits" })
-			vim.keymap.set("n", "<leader>br", builtin.git_branches, { desc = "Git branches" })
+			vim.keymap.set("n", "<leader>c", builtin.git_commits, { desc = "Git commits" })
+			vim.keymap.set("n", "<leader>b", builtin.git_branches, { desc = "Git branches" })
 		end,
 	},
 }
