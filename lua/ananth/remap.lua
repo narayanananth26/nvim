@@ -50,11 +50,6 @@ vim.keymap.set("n", "<leader>m", function()
 	end)
 end, { desc = "Open messages buffer" })
 
--- alias :git to :Git (fugitive)
-vim.cmd([[
-				cnoreabbrev <expr> git getcmdtype() == ":" ? "Git" : "git"
-]])
-
 -- git push --force
 vim.keymap.set("n", "gpf", function()
 	vim.notify("git push --force...", vim.log.levels.INFO)
