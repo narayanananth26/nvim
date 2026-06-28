@@ -13,6 +13,7 @@ return {
 				"prismals",
 				"pyright",
 				"eslint",
+				"jsonls",
 			},
 		},
 		config = function(_, opts)
@@ -84,6 +85,16 @@ return {
 				root_markers = { ".clangd", "compile_commands.json", "compile_flags.txt" },
 			})
 
+			-- JSON LSP with SchemaStore catalog (Chrome manifest, package.json, etc.)
+			vim.lsp.config("jsonls", {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+
 			mason_lspconfig.setup(opts)
 		end,
 		dependencies = {
@@ -100,6 +111,7 @@ return {
 				},
 			},
 			"neovim/nvim-lspconfig",
+			"b0o/schemastore.nvim",
 		},
 	},
 	{
