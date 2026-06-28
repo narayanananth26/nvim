@@ -55,12 +55,12 @@ return {
 				desc = "Quickfix List (Trouble)",
 			},
 			{
-				"]q",
+				"]c",
 				"<cmd>Trouble qflist next jump=true<cr>",
 				desc = "Quickfix next (Trouble)",
 			},
 			{
-				"[q",
+				"[c",
 				"<cmd>Trouble qflist prev jump=true<cr>",
 				desc = "Quickfix prev (Trouble)",
 			},
