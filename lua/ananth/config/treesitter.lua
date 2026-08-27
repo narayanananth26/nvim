@@ -22,5 +22,12 @@ require("nvim-treesitter").install({
   "python",
   "c",
   "cpp",
+  "go",
+  "gomod",
+  "markdown",
+  "markdown_inline",
+  "svelte",
+  "html",
+  "css",
 })
 
