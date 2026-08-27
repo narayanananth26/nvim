@@ -95,6 +95,10 @@ return {
 				},
 			})
 
+			vim.lsp.config("eslint", {
+				settings = { format = false },
+			})
+
 			mason_lspconfig.setup(opts)
 		end,
 		dependencies = {
