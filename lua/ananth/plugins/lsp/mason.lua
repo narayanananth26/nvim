@@ -99,6 +99,8 @@ return {
 				settings = { format = false },
 			})
 
+			vim.lsp.enable("oxlint")
+
 			mason_lspconfig.setup(opts)
 		end,
 		dependencies = {
