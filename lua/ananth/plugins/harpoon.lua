@@ -4,11 +4,17 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local harpoon = require("harpoon")
-		harpoon:setup()
+		harpoon:setup({
+			settings = {
+				key = function()
+					return vim.uv.cwd() or vim.fn.getcwd()
+				end,
+			},
+		})
 
 		vim.opt.showtabline = 2
 
-		local function harpoon_tabline()
+		local function build_tabline()
 			local list = harpoon:list()
 			local items = list.items or {}
 			local current = vim.api.nvim_buf_get_name(0)
@@ -25,6 +31,14 @@ return {
 				return "%#TabLineFill# harpoon: empty "
 			end
 			return table.concat(parts, "%#TabLineFill# ") .. "%#TabLineFill#"
+		end
+
+		local function harpoon_tabline()
+			local ok, result = pcall(build_tabline)
+			if not ok then
+				return "%#TabLineFill# harpoon: unavailable "
+			end
+			return result
 		end
 
 		_G.HarpoonTabline = harpoon_tabline
