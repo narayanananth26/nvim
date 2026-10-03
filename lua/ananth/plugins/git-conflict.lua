@@ -23,8 +23,8 @@ return {
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(plug, true, false, true), "m", false)
 			end
 
-			vim.keymap.set("n", "[[", function() navigate_conflict("prev") end)
-			vim.keymap.set("n", "]]", function() navigate_conflict("next") end)
+			vim.keymap.set("n", "[x", function() navigate_conflict("prev") end, { desc = "Prev git conflict" })
+			vim.keymap.set("n", "]x", function() navigate_conflict("next") end, { desc = "Next git conflict" })
 		end,
 	},
 }

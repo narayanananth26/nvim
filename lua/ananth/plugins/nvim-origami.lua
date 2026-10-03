@@ -17,8 +17,8 @@ return {
 		local fold_util = require("utils.code_folds")
 
 		vim.keymap.set("n", "za", "za", { noremap = true, silent = true })
-		vim.keymap.set("n", "[[", fold_util.goto_previous_fold, { noremap = true, silent = true })
-		vim.keymap.set("n", "]]", "zj", { noremap = true, silent = true })
+		vim.keymap.set("n", "[z", fold_util.goto_previous_fold, { noremap = true, silent = true })
+		vim.keymap.set("n", "]z", "zj", { noremap = true, silent = true })
 
 		vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "LspAttach" }, {
 			callback = function(opts)

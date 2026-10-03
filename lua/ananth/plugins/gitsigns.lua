@@ -8,7 +8,7 @@ return {
 					vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
 				end
 
-				map("]h", function()
+				map("]]", function()
 					if vim.wo.diff then
 						vim.cmd.normal({ "]c", bang = true })
 					else
@@ -16,7 +16,7 @@ return {
 					end
 				end, "Next git hunk")
 
-				map("[h", function()
+				map("[[", function()
 					if vim.wo.diff then
 						vim.cmd.normal({ "[c", bang = true })
 					else
