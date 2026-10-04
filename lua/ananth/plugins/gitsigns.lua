@@ -8,21 +8,33 @@ return {
 					vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
 				end
 
-				map("]]", function()
-					if vim.wo.diff then
-						vim.cmd.normal({ "]c", bang = true })
-					else
-						gs.nav_hunk("next")
-					end
-				end, "Next git hunk")
+				local function map_nav()
+					map("]]", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "]c", bang = true })
+						else
+							gs.nav_hunk("next")
+						end
+					end, "Next git hunk")
 
-				map("[[", function()
-					if vim.wo.diff then
-						vim.cmd.normal({ "[c", bang = true })
-					else
-						gs.nav_hunk("prev")
-					end
-				end, "Prev git hunk")
+					map("[[", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "[c", bang = true })
+						else
+							gs.nav_hunk("prev")
+						end
+					end, "Prev git hunk")
+				end
+
+				map_nav()
+
+				-- ftplugins (e.g. go.vim) set buffer-local ]] / [[ and can override ours
+				vim.api.nvim_create_autocmd("FileType", {
+					buffer = bufnr,
+					callback = function()
+						vim.schedule(map_nav)
+					end,
+				})
 
 				map("<leader>ga", gs.stage_hunk, "Stage/unstage hunk")
 				map("<leader>gr", gs.reset_hunk, "Reset hunk")
