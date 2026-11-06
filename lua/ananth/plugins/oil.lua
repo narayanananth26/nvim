@@ -99,5 +99,6 @@ return {
 		end
 
 		vim.keymap.set("n", "<leader>t", oil_dir_picker, { desc = "Find directory (Oil)" })
+		vim.keymap.set("n", "<leader>b", "<CMD>Oil<CR>", { desc = "Open oil in cwd" })
 	end,
 }
