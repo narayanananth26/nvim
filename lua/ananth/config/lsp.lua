@@ -27,12 +27,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		opts.desc = "Go to previous diagnostic"
 		keymap.set("n", "[d", function()
-			vim.diagnostic.jump({ count = -1, float = true })
+			vim.diagnostic.jump({ count = -1 })
 		end, opts) -- jump to previous diagnostic in buffer
 		--
 		opts.desc = "Go to next diagnostic"
 		keymap.set("n", "]d", function()
-			vim.diagnostic.jump({ count = 1, float = true })
+			vim.diagnostic.jump({ count = 1 })
 		end, opts) -- jump to next diagnostic in buffer
 
 		opts.desc = "Show documentation for what is under cursor"
@@ -47,6 +47,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.shiftwidth = 4
 		vim.opt_local.tabstop = 4
 		vim.opt_local.softtabstop = 4
+		-- Stop the "std:" label re-indent flicker while typing "std::"
+		vim.opt_local.indentkeys:remove(":")
 	end,
 })
 
@@ -55,6 +57,11 @@ vim.api.nvim_create_autocmd("FileType", {
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
+	jump = {
+		on_jump = function(_, bufnr)
+			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+		end,
+	},
 	virtual_text = false,
 	-- Show signs in the gutter
 	signs = {
